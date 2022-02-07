@@ -29,3 +29,19 @@ steps:
       java -jar pipeline-scan.jar -vid $(VERACODE_API_ID) -vkey $(VERACODE_API_KEY) -f /home/vsts/work/1/s/app/target/verademo.war || true
 - publish: $(System.DefaultWorkingDirectory)/results.json
   artifact: VeracodeBaseline
+- task: CopyFiles@2
+  displayName: "Copy Files to: $(build.artifactstagingdirectory)"
+  inputs:
+    SourceFolder: $(system.defaultworkingdirectory)
+    Contents: '**/*.war'
+    TargetFolder: $(build.artifactstagingdirectory)
+
+- task: Veracode@3
+  inputs:
+    ConnectionDetailsSelection: 'Credentials'
+    apiId: 'd9fba88cecedf101057ed8e28a5fbbd9'
+    apiKey: '2d6c9d93b514ae9947cd3e638dfba8831060ef3df50b2b80ff428b87048a7adb794657b8c09fee5dff58e42a9de6bd419a301b62a320eba8f1b295e04ef2e58f'
+    veracodeAppProfile: 'WebGoat_Test_mdas'
+    version: '$(build.buildNumber)'
+    filepath: '$(build.artifactstagingdirectory)'
+    maximumWaitTime: '60'
