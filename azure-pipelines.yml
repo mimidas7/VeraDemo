@@ -39,8 +39,8 @@ steps:
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Credentials'
-    apiId: 'd9fba88cecedf101057ed8e28a5fbbd9'
-    apiKey: '2d6c9d93b514ae9947cd3e638dfba8831060ef3df50b2b80ff428b87048a7adb794657b8c09fee5dff58e42a9de6bd419a301b62a320eba8f1b295e04ef2e58f'
+    apiId: '2695c2680bde4ffe1eb6bbf789bdc4d5'
+    apiKey: '8c55c05d18a66181bb27060d8432b450a48380ed9768386b1d82f6185d9f93da721d7b65da29cb05e6dda353f92469ba69c11726dfc48042730b449d60311125'
     veracodeAppProfile: 'WebGoat_Test_mdas'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
